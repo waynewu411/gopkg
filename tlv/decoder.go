@@ -15,7 +15,7 @@ func DecodeWithData(data []byte) (nodes Nodes, err error) {
 		}
 
 		// Check container tag
-		if node.IsContainer() {
+		if node.IsConstructed() {
 			ns, err := DecodeWithData(node.Value)
 			if nil != err {
 				return nil, err

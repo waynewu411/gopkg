@@ -83,18 +83,10 @@ func (n Node) String() string {
 	return sb.String()
 }
 
-var containerTypes = [][]byte{
-	[]byte("\xFF\x01"),
-	[]byte("\xFF\x03")}
-
-func (n Node) IsContainer() bool {
-	for _, Type := range containerTypes {
-		if bytes.Equal(Type, n.Type) {
-			return true
-		}
-	}
-
-	return false
+func (n Node) IsConstructed() bool {
+	/* If it's a constructed tag containing more tags
+	 * check https://en.wikipedia.org/wiki/X.690#Encoding */
+	return (n.Type[0] & (0x01 << 5)) != 0
 }
 
 func (n1 Node) Equal(n2 Node) bool {
