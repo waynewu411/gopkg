@@ -9,8 +9,6 @@ import (
 )
 
 type Node struct {
-	//data []byte
-
 	Type    []byte
 	Length  uint
 	Value   []byte
