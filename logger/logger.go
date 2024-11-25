@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"log"
+	"fmt"
 	"os"
 	"strconv"
 
@@ -32,7 +32,7 @@ func initLogger() (*zap.Logger, error) {
 func NewLogger() (lg *zap.Logger, closer func()) {
 	lg, err := initLogger()
 	if err != nil {
-		log.Fatalf("fail to init logger, error: %v", err)
+		panic(fmt.Sprintf("fail to init logger, error: %v", err))
 	}
 
 	undo := zap.ReplaceGlobals(lg)
